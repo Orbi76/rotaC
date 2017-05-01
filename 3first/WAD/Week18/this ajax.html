@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>"this" callback test</title>
+    <script type='text/javascript'>
+
+
+        function HitTasticApp(divId)
+        {
+            this.resultsDivId = divId;
+        }
+
+
+        // send the request
+        // the callback is always this.ajaxCallback, the callback function given below
+        HitTasticApp.prototype.sendRequest = function()
+        {
+            var artist = document.getElementById("artist").value;
+            var xhr2 = new XMLHttpRequest();
+            xhr2.addEventListener ("load", this.ajaxCallback);
+            xhr2.open("GET", "search.php?artist=" + artist);
+            xhr2.send();
+        }
+
+        // Standard callback function
+        // Places the response in the div with the ID of "this.resultsDivId", which we specified
+        // in the constructor
+        HitTasticApp.prototype.ajaxCallback = function(e)
+        {
+            var html = "";
+            var data = JSON.parse(e.target.responseText);
+            for(var i=0; i<data.length; i++)
+            {
+                html = html + "Song: " + data[i].song + " Artist: " + data[i].artist + "<br />";
+            }
+            document.getElementById(this.resultsDivId).innerHTML = html;
+        }
+
+
+
+
+    </script>
+</head>
+<body onload='init()'>
+<input type='button' id='meowbtn' value='Meow!' />
+</body>
+</html>

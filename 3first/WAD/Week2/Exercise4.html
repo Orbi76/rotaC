@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> JavaScript example</title>
+
+    <script type='text/javascript'>
+        function hello()
+        {
+            alert('Hello from JavaScript!');
+        }
+        function changecolour()
+        {
+            var bc = document.getElementById("bcolour").value;
+            var tc = document.getElementById("tcolour").value;
+            var ms = document.getElementById("mess").value;
+            document.getElementById('div1').style.backgroundColor= bc;
+            document.getElementById('div1').style.color= tc;
+            document.getElementById('div1').innerHTML= ms;
+            //document.getElementById('div1').innerHTML = "<h1>Some new text!</h1>";
+        }
+        function changecolour2(bc,tc,ms)
+        {
+            var id = "div1";
+            setDiv(id,bc,tc,ms);
+        }
+
+        function seasons()
+        {
+            var ense = ["Winter","Spring","Summer","Autumn"];
+            var gese = ["Winter","Fruehling","Sommer","Herbst"];
+            for(var count=0; count<ense.length; count++) {
+                alert("The German for " + gese[count] + " is " + ense[count]);
+            }
+        }
+        function setDiv(id, bc, tc, ms)
+        {
+            document.getElementById(id).style.backgroundColor= bc.value;
+            document.getElementById(id).style.color= tc.value;
+            document.getElementById(id).innerHTML= ms.value;
+        }
+
+
+
+    </script>
+</head>
+<body>
+<h1>Hello</h1>
+
+Background colour:<br /><input id="bcolour" name="bcolour" value="red"/> <br />
+Text colour:<br /><input id="tcolour" name="tcolour" value="yellow"/> <br />
+Message:<br /><input id="mess" name="mess"/> <br />
+<input type='button' value='Go!' onclick='changecolour()'/><br />
+<input type='button' value='Seasons' onclick='seasons()'/><br />
+<input type='button' value='Exer4' onclick='changecolour2(bcolour,tcolour,mess)'/><br />
+<div id='div1'> This is the test div </div>
+</body>
+</html>

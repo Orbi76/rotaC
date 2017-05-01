@@ -1,0 +1,81 @@
+
+<html><head>
+    <title>AJAX Exercise</title>
+
+    <style type='text/css'>
+        body { font-family: Calibri, DejaVu Sans, sans-serif; }
+        #response { background-color: #ffffc0; width:400px; height:400px; }
+    </style>
+
+
+    <script type='text/javascript'>
+
+
+        function ajaxrequest()
+        {
+            var xhr2 = new XMLHttpRequest();
+
+            xhr2.addEventListener ("load", receiveData);
+
+            var a = document.getElementById("artist").value;
+
+
+            xhr2.open("GET", "http://edward/wad/xmlflights.php?destination=" + a + "&date=" + b);
+            xhr2.send();
+        }
+
+        // The callback function
+        function receiveData(e)
+        {
+            var html = "";
+            alert(e.target.response)
+
+            var flightsArray = e.target.responseXML.getElementsByTagName("flight");
+            for(var count=0; count<flightsArray.length; count++)
+            {
+                var dest = flightsArray[count].getElementsByTagName("destination")[0].
+                        firstChild.nodeValue;
+
+                var dep = flightsArray[count].getElementsByTagName("depart")[0].
+                        firstChild.nodeValue;
+
+                var arr = flightsArray[count].getElementsByTagName("arrive")[0].
+                        firstChild.nodeValue;
+
+                var num = flightsArray[count].getElementsByTagName("flightnumber")[0].
+                        firstChild.nodeValue;
+
+                html = html + "To: " + dest + " Depart: " + dep +
+                        " Arrive: " + arr + " Flight no.: " + num + "<br />";
+
+            }
+
+            document.getElementById("response").innerHTML = html;
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+
+<h1>Solent Airways!</h1>
+<p>Try the following:
+<ul>
+    <li>Destination Denver, date 06/09/2011</li>
+    <li>Destination Barcelona, date 07/07/2010</li>
+    <li>Destination Alicante, date 04/09/2008</li>
+</ul>
+</p>
+<p>
+    Destination:<br/>
+    <input id="destination" value="Denver" /> <br/>
+    Date:<br/>
+    <input id="date" value="06/09/2011" /> <br/>
+    <input type="button" value="Go!" onclick="ajaxrequest()" />
+</p>
+
+<div id="response"></div>
+
+</body></html>

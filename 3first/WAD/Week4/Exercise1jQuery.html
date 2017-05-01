@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> JavaScript example</title>
+
+
+    <script type='text/javascript'>
+        function hello()
+        {
+            alert('Hello from JavaScript!');
+        }
+        function changecolour()
+        {
+            var bc = document.getElementById("bcolour").value;
+            var tc = document.getElementById("tcolour").value;
+            var ms = document.getElementById("mess").value;
+            document.getElementById('div1').style.backgroundColor= bc;
+            document.getElementById('div1').style.color= tc;
+            document.getElementById('div1').innerHTML= ms;
+           // $("#div1").animate ( { width:"800px", height:"600px" }, 3000);
+            //document.getElementById('div1').innerHTML = "<h1>Some new text!</h1>";
+        }
+
+
+
+    </script>
+    <style type='text/css'>
+        #div1
+        {
+            top: 300px;
+            left: 0px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            background-color: #ffffc0;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Hello</h1>
+
+Background colour:<br /><input id="bcolour" /> <br />
+Text colour:<br /><input id="tcolour" /> <br />
+Message:<br /><input id="mess" /> <br />
+<input type='button' value='Go!' onclick='changecolour()'/><br />
+<div id='div1'> This is the test div </div>
+</body>
+</html>

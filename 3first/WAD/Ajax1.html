@@ -1,0 +1,56 @@
+<html>
+<head>
+    <style type='text/css'>
+        #div1 { background-color: magenta; color: yellow; width:400px; height:300px}
+    </style>
+    <script type='text/javascript' src='http://edward2/ewt/jquery.min.js'>
+    </script>
+    <script type='text/javascript'>
+
+
+
+        function startup()
+        {
+            $('#btn1').click (ajaxrequest);
+        }
+
+        function ajaxrequest()
+        {
+            var a=$("#destination").val();
+            var b=$("#date").val();
+
+            $.ajax('flights.php',
+                    { type: 'GET',
+                        data: 'destination='+a +'&date='+b,
+                        success: onSuccess }
+            );
+
+        }
+
+        function onSuccess(data)
+        {
+            var html="";
+
+            var flights = $(data).find("flight");
+            for(var i=0; i<flights.length; i++)
+            {
+                html += "Flight no.:" + $(flights[i]).find("number").text();
+                html += " Time:" + $(flights[i]).find("time").text() + "<br />";
+            }
+            $("#div1").html(html);
+        }
+
+        $(startup);
+
+    </script>
+</head>
+<body>
+<h1>AJAX Test</h1>
+<div id="div1">
+    Results will appear here
+</div>
+Flight Destination: <input id='destination' type='text' /> <br />
+Date: <input id='date' type='text' /> <br />
+<input id='btn1' value='Go!' type='button'/>
+</body>
+</html>

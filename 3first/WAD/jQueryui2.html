@@ -1,0 +1,35 @@
+<html>
+<head>
+    <link rel='stylesheet' type='text/css' href='http://edward2.solent.ac.uk/ewt/jquery-ui.css' />
+    <script type='text/javascript' src='http://edward2.solent.ac.uk/ewt/jquery.min.js'></script>
+    <script type='text/javascript' src='http://edward2.solent.ac.uk/ewt/jquery-ui.min.js'></script>
+    <script type='text/javascript'>
+
+        $(onLoad);
+
+        function onLoad()
+        {
+            $('#dialog1').dialog( {
+                modal: true,
+                buttons:
+                { 'OK' : okHandler,
+                    'Cancel' : cancelHandler }
+            } );
+        }
+
+        function okHandler()
+        {
+            $('#dialog1').dialog('close');
+        }
+
+        function cancelHandler()
+        {
+            alert("Sorry, you can't cancel - too late!");
+        }
+    </script>
+<body>
+<h1>Dialog Test</h1>
+<p>Welcome to the dialog test page.</p>
+<div id="dialog1">Confirm signup?</div>
+</body>
+</html>

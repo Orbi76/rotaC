@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Leaflet Example</title>
+    <script type='text/javascript'
+            src='http://edward2/wad/leaflet/leaflet.js'></script>
+    <link rel='stylesheet' type='text/css'
+          href='http://edward2/wad/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+        function init()
+        {
+            var map = L.map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            L.tileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } ).addTo(map);
+
+            map.setView(new L.LatLng(47.5070,19.0470), 13);
+
+            L.marker([47.5070,19.0470]).addTo(map);
+
+        }
+    </script>
+</head>
+<body onload="init()">
+<h1>Leaflet Test</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>
+

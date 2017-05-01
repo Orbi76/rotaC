@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Basic DOM example</title>
+
+    <style type='text/css'>
+        #div1 { background-color: black; color: yellow; width:400px; height:200px; }
+    </style>
+
+    <script type='text/javascript'>
+
+        function changecolour()
+        {
+            document.getElementById('div1').style.backgroundColor='red';
+            document.getElementById('div1').style.color='white';
+            document.getElementById("div1").innerHTML = "Some new text!";
+        }
+
+    </script>
+</head>
+<body>
+
+<h1>Basic DOM example</h1>
+
+<input type='button' value='Go!' onclick='changecolour()'/>
+<div id='div1'> This is the test div </div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<title> JavaScript example</title>
+
+<script type='text/javascript'>
+function hello()
+{
+    alert('Hello from JavaScript!');
+}
+function changecolour()
+{
+    var n = document.getElementById("bcolour").value;
+    document.getElementById('div1').style.backgroundColor= n;
+    document.getElementById('div1').style.color='white';
+    //document.getElementById('div1').innerHTML = "<h1>Some new text!</h1>";
+}
+</script>
+</head>
+<body>
+<h1>Hello</h1>
+
+Background colour:<input id="bcolour" /> <br />
+<input type='button' value='Go!' onclick='changecolour()'/><br />
+<div id='div1'> This is the test div </div>
+</body>
+</html>

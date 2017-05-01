@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>Leaflet Example</title>
+
+    <script type='text/javascript'
+            src='http://localhost:63342/WAD/leaflet/leaflet.js'>
+    </script>
+    <link rel='stylesheet' type='text/css' href='http://localhost:63342/WAD/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+
+        var map;
+
+
+        function init()
+        {
+            var map = new L.Map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            var layerOSM = new L.TileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } );
+
+            map.addLayer(layerOSM);
+
+
+            var pos = new L.LatLng(47.5070, 19.0455);
+
+
+            var marker = new L.Marker(pos,{draggable: true});
+            map.addLayer(marker);
+
+
+            var pos2 = new L.LatLng(47.5056, 19.0533);
+            map.setView(pos2, 15);
+            var marker2 = new L.Marker(pos2);
+            map.addLayer(marker2);
+
+            var vadasz = new L.Circle(pos2,25,{ fillColor: 'green', color: 'red', opacity: 0.5 });
+            var parlament = new L.Circle(pos,250,{ fillColor: 'yellow', color: 'red', opacity: 0.5 });
+
+            map.addLayer(vadasz);
+            map.addLayer(parlament);
+
+            vadasz.bindPopup("Flat in Vadasz street");
+            parlament.bindPopup("Parliament");
+
+            map.on("click",onMapClick)
+
+
+
+        }
+        function onMapClick(e) {
+            alert("You clicked at: " + e.latlng.lat + " " + e.latlng.lng);
+        }
+    </script>
+</head>
+<body onload="init()">
+<h1>Budapest</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>

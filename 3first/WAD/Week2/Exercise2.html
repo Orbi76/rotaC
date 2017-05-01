@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> JavaScript example</title>
+
+    <script type='text/javascript'>
+        function hello()
+        {
+            alert('Hello from JavaScript!');
+        }
+        function changecolour()
+        {
+            var bc = document.getElementById("bcolour").value;
+            var tc = document.getElementById("tcolour").value;
+            var ms = document.getElementById("mess").value;
+            document.getElementById('div1').style.backgroundColor= bc;
+            document.getElementById('div1').style.color= tc;
+            document.getElementById('div1').innerHTML= ms;
+            //document.getElementById('div1').innerHTML = "<h1>Some new text!</h1>";
+        }
+    </script>
+</head>
+<body>
+<h1>Hello</h1>
+
+Background colour:<br /><input id="bcolour" /> <br />
+Text colour:<br /><input id="tcolour" /> <br />
+Message:<br /><input id="mess" /> <br />
+<input type='button' value='Go!' onclick='changecolour()'/><br />
+<div id='div1'> This is the test div </div>
+</body>
+</html>

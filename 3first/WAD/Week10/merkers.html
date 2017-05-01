@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Leaflet Example</title>
+    <script type='text/javascript'
+            src='http://edward2/ewt/leaflet/leaflet.js'></script>
+    <link rel='stylesheet' type='text/css'
+          href='http://edward2/ewt/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+        function init()
+        {
+            var map = new L.Map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            var layerOSM = new L.TileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } );
+            map.addLayer(layerOSM);
+
+            var pos = new L.LatLng(50.9079,-1.4015);
+            map.setView(pos, 14);
+
+
+            var solent = new L.Circle(pos,100);
+
+            var saintsStadium = new L.Polygon ( [
+                        new L.LatLng(50.9063 , -1.3914 ) ,
+                        new L.LatLng(50.9063 , -1.3905 ) ,
+                        new L.LatLng(50.9053 , -1.3905 ) ,
+                        new L.LatLng(50.9053 , -1.3914 )
+                    ]
+            );
+
+            var routeToStation = new L.Polyline ( [
+                        new L.LatLng ( 50.9079, -1.4015 ) ,
+                        new L.LatLng(  50.9071, -1.4015 ) ,
+                        new L.LatLng( 50.9069, -1.4047 ) ,
+                        new L.LatLng( 50.9073, -1.4077 ) ,
+                        new L.LatLng( 50.9081, -1.4134 )
+                    ]
+            );
+
+            map.addLayer(solent);
+            map.addLayer(saintsStadium);
+            map.addLayer(routeToStation);
+        }
+    </script>
+</head>
+<body onload="init()">
+<h1>Markers different shapes.</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>

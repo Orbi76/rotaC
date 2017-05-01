@@ -1,0 +1,89 @@
+
+<html><head>
+    <title>AJAX Exercise 1 </title>
+
+    <style type='text/css'>
+        body { font-family: Calibri, DejaVu Sans, sans-serif; }
+        #response { background-color: #ffffc0; width:400px; height:400px; }
+    </style>
+
+
+    <script type='text/javascript'>
+
+
+        function ajaxrequest()
+        {
+            var xhr2 = new XMLHttpRequest();
+
+            xhr2.addEventListener ("load", receiveData);
+
+            var a = document.getElementById("artist").value;
+           // var b = document.getElementById("date").value;
+
+            xhr2.open("GET","http://localhost:8888/WAD/makexml.php?artist=" + a );
+            xhr2.send();
+        }
+
+        // The callback function
+        function receiveData(e)
+        {
+            var html = "";
+            alert(e.target.response)
+
+            var hitsArray = e.target.responseXML.getElementsByTagName("hit");
+            for(var count=0; count<hitsArray.length; count++)
+            {
+                var song = hitsArray[count].getElementsByTagName("song")[0].
+                        firstChild.nodeValue;
+
+                var artist = hitsArray[count].getElementsByTagName("artist")[0].
+                        firstChild.nodeValue;
+
+                var year = hitsArray[count].getElementsByTagName("year")[0].
+                        firstChild.nodeValue;
+
+                var month = hitsArray[count].getElementsByTagName("month")[0].
+                        firstChild.nodeValue;
+
+                var chart = hitsArray[count].getElementsByTagName("chart") [0].
+                        firstChild.nodeValue;
+
+                var ID = hitsArray[count].getElementsByTagName("ID") [0].
+                        firstChild.nodeValue;
+
+                var quantity = hitsArray[count].getElementsByTagName("quantity") [0].
+                        firstChild.nodeValue;
+
+                html = html + "Song: " + song + " Artist: " + artist +
+                        " Year: " + year + " mont: " + month + " Chart "+ chart + " ID " + ID+ " quantity " +quatity + "<br />";
+
+            }
+
+            document.getElementById("response").innerHTML = html;
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+
+<h1>Week3 Exercise1</h1>
+<p>Try the following:
+<ul>
+    <li>song</li>
+    <li>Artist</li>
+    <li>ID</li>
+</ul>
+</p>
+<p>
+    Artist:<br/>
+    <input id="artist" value="Madonna" /> <br/>
+
+    <input type="button" value="Go!" onclick="ajaxrequest()" />
+</p>
+
+<div id="response"></div>
+
+</body></html>

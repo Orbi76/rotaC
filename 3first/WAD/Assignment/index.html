@@ -1,0 +1,175 @@
+<html>
+<head>
+    <style type='text/css'>
+        body { background-color: black; color: #750c05; font-family: helvetica, arial, sans-serif; }
+        #response { background-color: #ffffc0; width:600px; }
+
+        table,th,td {
+            border : 1px solid black;
+            border-collapse: collapse;
+        }
+        th,td {
+            padding: 5px;
+        }
+    </style>
+
+    <script type='text/javascript'>
+
+
+        function ajaxrequest()
+        {
+            var xhr2 = new XMLHttpRequest();
+
+            xhr2.addEventListener ("load", receiveData);
+
+            var a = document.getElementById("locationbox").value;
+         //   var b = document.getElementById("chpo").value;
+
+
+            // xhr2.open("GET", "http://edward2/wad/xmlflights.php?destination=" + a + "&date=" + b);
+            xhr2.open("GET", "http://edward2.solent.ac.uk/~gorban/Assignment/webservice.php?locationbox=" + a);
+            //xhr2.open("GET", "http://edward2/Emakexml.php?artist=" + a);
+            xhr2.send();
+        }
+
+        // The callback function
+        function receiveData(e)
+        {
+            //var html = " ";
+            // alert(e.target.response);
+            var a = document.getElementById("locationbox").value;
+            //var b = document.getElementById("type").value;
+
+            var table = "<tr><th>Name</th><th>ID</th><th>Type</th><th>Location</th><th>Latitude</th><th>Longitede</th><th>Description</th><th>Book place</th></tr>";
+
+            var accommodationsArray = e.target.responseXML.getElementsByTagName("accommodation");
+            //alert("Array length: " + songsArray.length);
+
+
+
+            for (var count = 0; count < accommodationsArray.length; count++) {
+               // var current = accommodationsArray[count].getElementsByTagName("accommodations")[0].firstChild.nodeValue;
+
+             //   if (parseInt(current) <= parseInt(a))
+             //   {
+
+                    //  var song = songsArray[count].getElementsByTagName("song")[0].firstChild.nodeValue;
+                    table += "<tr><td>" +
+                            accommodationsArray[count].getElementsByTagName("name")[0].firstChild.nodeValue +
+                            "</td><td>" +
+                            accommodationsArray[count].getElementsByTagName("id")[0].firstChild.nodeValue +
+                            "</td><td>" +
+                            accommodationsArray[count].getElementsByTagName("type")[0].firstChild.nodeValue +
+                            "</td><td>" +
+                            accommodationsArray[count].getElementsByTagName("location")[0].firstChild.nodeValue +
+                            "</td><td>" +
+                            accommodationsArray[count].getElementsByTagName("longitude")[0].firstChild.nodeValue +
+                            "</td><td>" +
+                            accommodationsArray[count].getElementsByTagName("latitude")[0].firstChild.nodeValue +
+                            "</td><td>" +
+                            accommodationsArray[count].getElementsByTagName("description")[0].firstChild.nodeValue +
+                            "</td></tr>"+
+                            accommodationsArray[count].createTextNode("<a href='booking.php?ID=$id'> to book click here!</a>") +
+                            "</td><td>";
+                    //              html = html + " Title: " + title + " Artist: " + art + " Year: " + year + "<br />";
+               // }
+            }
+
+            document.getElementById("divtable").innerHTML = table;
+
+
+        }
+
+
+    </script>
+
+
+
+
+
+</head>
+<body>
+<h1>PlacesToStay - your top accommodation searching site</h1>
+<p>
+    Location:<br />
+    <input id="locationbox" value="Colorado" /> <br />
+   <!-- Type:<input name="type" type="text" id="ttype"/> <br /> -->
+    <input type='button' value='Go!' id="btn1" onclick="ajaxrequest()" />
+<p/>
+
+    <div id="response">Result will appear here<table id="divtable"></table></div>
+
+
+
+</body>
+</html>
+<!--
+
+function appendLink()
+{
+            var divEl = document.getElementById('link_div');
+            var aElem = document.createElement('a');
+            aElem.href="http://www.google.com";
+            var aElemTN = document.createTextNode('link to Google');
+            aElem.appendChild(aElemTN);
+            divEl.appendChild(aElem);
+}
+
+
+
+<html>
+<head>
+    <style type='text/css'>
+        #div1 { background-color: magenta; color: yellow; width:400px; height:300px}
+    </style>
+    <script type='text/javascript' src='http://edward2/ewt/jquery.min.js'>
+    </script>
+    <script type='text/javascript'>
+
+
+
+        function startup()
+        {
+            $('#btn1').click (ajaxrequest);
+        }
+
+        function ajaxrequest()
+        {
+            var a=$("#destination").val();
+            var b=$("#date").val();
+
+            $.ajax('flights.php',
+                    { type: 'GET',
+                        data: 'destination='+a +'&date='+b,
+                        success: onSuccess }
+            );
+
+        }
+
+        function onSuccess(data)
+        {
+            var html="";
+
+            var flights = $(data).find("flight");
+            for(var i=0; i<flights.length; i++)
+            {
+                html += "Flight no.:" + $(flights[i]).find("number").text();
+                html += " Time:" + $(flights[i]).find("time").text() + "<br />";
+            }
+            $("#div1").html(html);
+        }
+
+        $(startup);
+
+    </script>
+</head>
+<body>
+<h1>AJAX Test</h1>
+<div id="div1">
+    Results will appear here
+</div>
+Flight Destination: <input id='destination' type='text' /> <br />
+Date: <input id='date' type='text' /> <br />
+<input id='btn1' value='Go!' type='button'/>
+</body>
+</html>

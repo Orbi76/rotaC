@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Hittastic page</title>
+    <link rel="stylesheet" type="text/css" href="Hittastic.css"/>
+
+
+    <style>
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        th {text-align: left;}
+    </style>
+
+    <script type='text/javascript'>
+
+//        function startup()
+//        {
+//            $('#btn1').click (ajaxrequest);
+//        }
+
+
+        function ajaxrequest() {
+
+            var xhr2 = new XMLHttpRequest();
+
+            var a = document.getElementById("artist").value;
+            xhr2.addEventListener("load", receiveData);
+
+          //  xhr2.open("GET", "http://edward2/wad/json.php?artist=" + a);
+            xhr2.open("GET", "http://localhost:8888/WAD/json.php?artist=" + a);
+            xhr2.send();
+        }
+
+
+        // The callback function
+//        function receiveData(e)
+//        {
+//            document.getElementById('response').innerHTML = e.target.responseText;
+//        }
+        //The callback function
+        function receiveData(e)
+        {
+            var html="";
+            var data = JSON.parse(e.target.responseText);
+            for (var i=0; i<data.length; i++)
+            {
+              //  html = html + (data[i].songid+ ' ' + data[i].artist+ ' ' + data[i].title + '</br>');
+                html = html + ("<tr><td>" + data[i].songid + "</td><td>" + " " + data[i].artist + "</td><td>" + " " + data[i].title +"</td></tr>" + "</br>");
+
+            }
+            document.getElementById('responsediv').innerHTML = html;
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+
+</head>
+
+
+
+<body>
+<div id="header">
+    <h1>Hittastic home page!</h1>
+</div>
+
+<div id="nav">
+    <ul id="navbar">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</div>
+<div id="main">
+
+    <h1> Hello</h1>
+    <p>This is a music wedsite where you can find your favorite Artist and you can check its position on the Chart.</p>
+    <form method="post">
+
+        <label >Artist: </label>
+        <input type="text" name="artist" id="artist"/>
+        <br/>
+        <label >Year from: </label>
+        <input type="text" name="yearfrom" id="yearfrom"/>
+        <label >Year to : </label>
+        <input type="text" name="yearto" id="yearto"/>
+        <br/>
+        <input type="button" value="Go!" id="btn1" onclick="ajaxrequest()" />
+
+    </form>
+
+    <div id="responsediv">
+        <p>Response:<br/></p>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

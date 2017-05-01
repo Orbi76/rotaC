@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Exercise 3</title>
+    <style>
+        canvas{
+            background-color: darkcyan ;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+
+
+        function draw()
+        {
+
+            posx = 300;
+            posy = 100;
+
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext('2d');
+
+
+            ctx.fillStyle = "green";
+            ctx.fillRect(250,50,100,100);
+            ctx.fillStyle = "blue";
+            ctx.arc(posx,posy,20,0,2*Math.PI, false);
+            ctx.fill();
+            //  ctx.drawrect();
+
+            var image = new Image();
+            image.src = "hero.jpg";
+            // image.onload;
+            ctx.drawImage(image,250,50);
+
+
+
+////
+// Obtain an element
+            //  var ourElement = document.getElementById("element1");
+
+            // Handle mouse down, mouse move and mouse up events
+
+            // The mouseDownHandler function will handle mouse presses
+            canvas.addEventListener ("mousedown", mouseDownHandler);
+
+            // The mouseMoveHandler function will handle mouse movement
+            canvas.addEventListener ("mousemove", mouseMoveHandler);
+
+            // The mouseUpHandler function will handle mouse release
+            canvas.addEventListener ("mouseup", mouseUpHandler);
+
+            canvas.addEventListener ("keyup", handleKeyEvent);
+
+
+            function mouseDownHandler(e)
+            {
+
+                outputText('status','mouse pressed at: x=' + e.pageX + ' y=' + e.pageY);
+
+
+                ctx.fillStyle = "yellow";
+                ctx.beginPath();
+                ctx.arc(e.pageX, e.pageY,20,0,2*Math.PI, false);
+                ctx.fill();
+
+            }
+
+            function mouseMoveHandler(e)
+            {
+                outputText('status','mouse moving at: x=' + e.pageX + ' y=' + e.pageY);
+
+            }
+
+            function mouseUpHandler(e)
+            {
+                outputText('status','mouse released at: x=' + e.pageX + ' y=' + e.pageY);
+
+                ctx.fillStyle = "red";
+                ctx.beginPath();
+                ctx.arc(e.pageX, e.pageY,20,0,2*Math.PI, false);
+                ctx.fill();
+
+            }
+/////
+            function handleKeyEvent(e)
+            {
+                status("status","keyCode=" + e.keyCode + " shift? " + e.shiftKey );
+            }
+
+// Function to make it easy to write the status to a given element on the page
+            function outputText(elementID, text)
+            {
+                document.getElementById(elementID).innerHTML = text;
+            }
+
+
+            function drawrect() {
+
+                ctx.fillStyle = "green";
+                ctx.fillRect(100,100,100,300);
+            }
+
+            function movef()
+            {
+                oldx=newx;
+
+
+                var image = new Image();
+                image.src = "hero.jpg";
+                // image.onload;
+                ctx.drawImage(image,250,50);
+            }
+
+        }
+
+
+    </script>
+</head>
+<body onload="draw()">
+<canvas id="myCanvas" height="500" width="700" ></canvas>
+<p>Hello</p>
+<div id='status'>status</div>
+</body>
+</html>

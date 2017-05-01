@@ -1,0 +1,14 @@
+<songs>
+    <song>
+        <title>Song1</title>
+        <artist>Phill</artist>
+        <year>2000</year>
+    </song>
+
+    <song>
+        <title>Song2</title>
+        <artist>Madonna</artist>
+        <year>2001</year>
+    </song>
+
+</songs>

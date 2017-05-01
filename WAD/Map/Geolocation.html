@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Geolocation Test</title>
+    <script type='text/javascript'>
+
+        function init()
+        {
+            if(navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition (processPosition, handleError);
+            }
+            else
+            {
+                alert("Sorry, geolocation not supported in this browser");
+            }
+        }
+
+        function processPosition(pos)
+        {
+            var info = 'Lat: ' + pos.coords.latitude + ' lon: ' + pos.coords.longitude;
+            document.getElementById('info').innerHTML = info;
+        }
+
+        function handleError(err)
+        {
+            alert('An error occurred: ' + err.code);
+        }
+
+    </script>
+</head>
+<body onload='init()'>
+<h1>Geolocation Test</h1>
+<div id='info'></div>
+</body>
+</html>

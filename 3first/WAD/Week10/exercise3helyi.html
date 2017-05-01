@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Leaflet Example</title>
+
+    <script src="http://www.orbi76.comxa.com/leaflet/leaflet.js"></script>
+
+
+    <link rel='stylesheet' type='text/css'
+          href='http://www.orbi76.comxa.com/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+        function init()
+        {
+            var map = new L.Map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            var layerOSM = new L.TileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } );
+
+            map.addLayer(layerOSM);
+
+
+            var pos = new L.LatLng(47.5070, 19.0455);
+            map.setView(pos, 13);
+
+
+            //  map.setView(new L.LatLng(47.5070, 19.0455), 13);
+
+            var marker = new L.Marker(pos);
+            map.addLayer(marker);
+        }
+    </script>
+</head>
+<body onload="init()">
+<h1>Budapest</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>
+
+http://www.orbi76.comxa.com/exercise3.html

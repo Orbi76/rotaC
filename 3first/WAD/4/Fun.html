@@ -1,0 +1,46 @@
+<html>
+<head>
+    <style type='text/css'>
+        body { background-color: black; color: white; font-family: helvetica, arial, sans-serif; }
+    </style>
+</head>
+<body>
+<h1>Madonna funs home page</h1>
+
+<form method="get" action="wsclient.php">
+    Artist:
+    <select name="artist">
+        <option>Madonna</option>
+        <option>a</option>
+        <option>b</option>
+    </select>
+    <input type='submit' value='Go!' />
+</form>
+
+<?php
+
+$a = $_GET["artist"];
+$conn = new PDO("mysql:host=localhost;dbname=dftitutorials;",
+                "dftitutorials","dftitutorials");
+
+$results = $conn->query("select * from wadsongs where artist='$a'");
+while($row=$results->fetch())
+{
+    echo "<p>";
+    echo " Song ID $row[songid]  <br/> ";
+    echo " Title $row[title] <br/> " ;
+    echo " Artist $row[artist] <br/>" ;
+    echo " Chart $row[chart] <br/>" ;
+    echo " Year $row[year] <br/>" ;
+    echo "</p>";
+}
+
+
+?>
+
+
+
+
+
+</body>
+</html>

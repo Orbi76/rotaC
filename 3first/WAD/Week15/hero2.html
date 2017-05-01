@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hero 2</title>
+    <style>
+        canvas{
+            background-color: darkcyan ;
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+        p {
+            color: black;
+        }
+
+    </style>
+
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+-->
+    <script type="text/javascript">
+
+        x = 100;
+        y = 75;
+
+
+        function draw(){
+            canvas = document.getElementById("myCanvas");
+            canvas.addEventListener ("keydown", doKeyDown, true);
+            canvas.focus();
+
+            ctx = canvas.getContext('2d');
+            ctx.fillStyle = "red";
+            //   ctx.fillRect(150,150,100,100);
+            ctx.arc(100,75,50,0,2*Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+
+       // ctx.fillRect(100, 75, 50, 30);
+            //clearCanvas();
+
+
+        }
+
+
+
+        function doKeyDown(e)
+        {
+
+            //====================
+            //	THE W KEY
+            //====================
+            if (e.keyCode == 38) {
+                clearCanvas();
+                ctx.fillStyle = "red";
+                y = y - 10;
+            //    canvas_context.fillRect(x, y, 50, 30);
+               ctx.arc(x,y,50,0,2*Math.PI);
+                ctx.fill();
+                ctx.stroke();
+
+           //    ctx.fillRect(x, y, 50, 30);
+            }
+
+            //====================
+            //	THE S KEY
+            //====================
+            if (e.keyCode == 40) {
+                clearCanvas();
+                y = y + 10;
+             //   canvas_context.fillRect(x, y, 50, 30);
+                ctx.arc(x,y,50,0,2*Math.PI);
+                ctx.fill();
+                ctx.stroke();
+       //           ctx.fillRect(x, y, 50, 30);
+
+
+
+
+            }
+
+            //====================
+            //	THE A KEY
+            //====================
+            if (e.keyCode == 37) {
+                clearCanvas();
+                x = x - 10;
+            //    canvas_context.fillRect(x, y, 50, 30);
+                ctx.arc(x,y,50,0,2*Math.PI);
+                ctx.fill();
+                ctx.stroke();
+        //        ctx.fillRect(x, y, 50, 30);
+
+
+
+            }
+
+            //====================
+            //	THE D KEY
+            //====================
+            if (e.keyCode == 39) {
+                clearCanvas();
+                x = x + 10;
+             //   canvas_context.fillRect(x, y, 50, 30);
+                ctx.arc(x,y,50,0,2*Math.PI);
+                ctx.fill();
+                ctx.stroke();
+         //       ctx.fillRect(x, y, 50, 30);
+
+
+            }
+        }
+
+
+
+
+        function clearCanvas() {
+            canvas.width = canvas.width;
+        }
+
+    </script>
+</head>
+<body onload="draw()">
+<canvas id="myCanvas" height="400" width="400" tabindex="0" ></canvas>
+
+<p id="statusp">up, down</p>
+<div id='status'>status</div>
+
+</body>
+</html>

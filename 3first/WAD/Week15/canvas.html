@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+        canvas{
+            background-color: darkcyan ;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+
+    function draw(){
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = "red";
+        ctx.fillRect(150,150,100,100);
+
+
+        // draw line
+        ctx.strokeStyle = "#a06060";
+        ctx.lineWidth = 10;
+        ctx.beginPath();
+        ctx.moveTo(100,0);
+        ctx.lineTo(100,300);
+        ctx.lineTo(400,300);
+        ctx.closePath();
+        ctx.stroke();
+
+        //
+        ctx.font = "12pt Arial";
+        ctx.fillText("This is an example",150,350);
+
+        // image
+        var image = new Image();
+        image.src = "hero.jpg";
+       // image.onload;
+        ctx.drawImage(image,250,50);
+
+    }
+
+
+    </script>
+</head>
+<body onload="draw()">
+<canvas id="myCanvas" height="400" width="400" >
+
+
+
+</canvas>
+
+</body>
+</html>

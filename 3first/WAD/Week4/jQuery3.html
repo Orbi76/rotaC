@@ -1,0 +1,26 @@
+<html>
+<head>
+    <script type='text/javascript' src='http://edward2/ewt/jquery.min.js'>
+    </script>
+    <script type='text/javascript'>
+
+        function changeContents()
+        {
+            $('#div1').html('These are the new contents!');
+        }
+
+        function startup()
+        {
+            $('#btn1').click(changeContents);
+        }
+
+        $(startup);
+
+    </script>
+</head>
+<body>
+<h1>jQuery test</h1>
+<div id="div1">This is the test div</div>
+<input type="button" id="btn1" value="Click!" />
+</body>
+</html>

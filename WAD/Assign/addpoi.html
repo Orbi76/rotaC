@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addpoiphp</title>
+</head>
+<body>
+
+
+
+
+<form method="post" action="webadd.php">
+    <p>Pleas Add a poi.<br />
+
+<!--        <input type="hidden" name="name" value="<?php echo $ID; ?>" />   -->
+    <p>Poi name:<input type="text" name="name"/></p>
+    <p>Poi type:<input type="text" name="type"/></p>
+    <p>Poi country:<input type="text" name="country"/></p>
+    <p>Poi region:<input type="text" name="region"/></p>
+    <p>Poi lon:<input type="text" name="lon"/></p>
+    <p>Poi lat:<input type="text" name="lat"/></p>
+    <p>Poi description:<input type="text" name="description"/></p>
+
+
+
+    <input type="submit" value="Submit Poi"/><br />
+</form>
+
+
+
+<form method="post" action="webreview.php">
+    <p>Pleas Add a review.<br />
+    <p>Poi ID:<input type="text" name="poi_id"/></p>
+    <p>Your review:<textarea name="review" rows="5" cols="40"></textarea></p>
+
+
+
+
+    <input type="submit" value="Submit Review"/><br />
+</form>
+
+
+<p>
+    Pois type:<br/>
+    <input id="type" onkeyup='ajaxrequest()' /> <br/>
+    <input type="button" value="Go!" onclick="ajaxrequest()" />
+</p>
+
+
+</body>
+</html>

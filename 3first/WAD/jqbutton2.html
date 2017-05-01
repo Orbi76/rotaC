@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script type='text/javascript' src='http://edward2/ewt/jquery.min.js'>
+    </script>
+    <script type='text/javascript'>
+
+        function changeContents()
+        {
+            $('#div1').html('These are the new contents!');
+            $('#div1').css(
+                    { backgroundColor: "red",
+                        color: "white" } );
+            $("#div1").animate ( { width:"800px", height:"600px" }, 3000).
+            animate ( { width:"600px", height:"400px"}, 4000);
+        }
+
+        function startup()
+        {
+            $('#btn1').click(changeContents);
+        }
+
+        $(startup);
+
+    </script>
+</head>
+<body>
+<h1>jQuery test</h1>
+<div id="div1">This is the test div</div>
+<input type="button" id="btn1" value="Click!" />
+</body>
+</html>
+

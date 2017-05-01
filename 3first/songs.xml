@@ -1,0 +1,13 @@
+<CDs>
+    <CD>
+        <artist>Madonna</artist>
+        <title>Like a ..</title>
+        <genre>Pop</genre>
+
+    </CD>
+    <CD>
+        <artist>Phil Collins</artist>
+        <title>Can't Hurry...</title>
+        <genre>Pop</genre>
+    </CD>
+</CDs>

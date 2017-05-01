@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task1 PHP</title>
+</head>
+<body>
+
+
+<h1>Database results!</h1>
+<?php
+
+$a = Woop;
+$conn = new PDO("mysql:host=localhost;dbname=dftitutorials;",
+                "root","root");
+
+
+$results = $conn->query("select * from wadsongs where artist='Woop'");
+while($row=$results->fetch())
+{
+echo "<p>";
+    echo " Title $row[title]  <br/> ";
+    echo " Year $row[year] <br/> " ;
+
+    echo "</p>";
+}
+
+
+?>
+
+
+</body>
+</html>

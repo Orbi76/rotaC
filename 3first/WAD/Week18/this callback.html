@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>"this" callback test</title>
+    <script type='text/javascript'>
+
+        function Cat(n,a)
+        {
+            this.theName=n;
+            this.age=a;
+        }
+
+        Cat.prototype.meow = function()
+        {
+            alert(this.theName + " says Meow!");
+        }
+
+        Cat.prototype.displayDetails = function()
+        {
+            alert(this.theName + " " + this.age);
+        }
+
+        // Runs when the page loads
+        function init()
+        {
+            // Create the cat
+            var tom = new Cat("Tom", 7);
+            tom.displayDetails();
+
+            var tigger = new Cat("Tigger", 8);
+            tigger.displayDetails();
+
+            // When the user clicks the button, the meow method will run
+            document.getElementById("meowbtn").addEventListener("click", tom.meow.bind(tom));
+        }
+
+
+
+    </script>
+</head>
+<body onload='init()'>
+<input type='button' id='meowbtn' value='Meow!' />
+</body>
+</html>

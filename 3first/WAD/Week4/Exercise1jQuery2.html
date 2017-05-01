@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> JavaScript example</title>
+
+
+    <script type='text/javascript' src='http://edward2/ewt/jquery.min.js'>
+    </script>
+
+
+    <script type='text/javascript'>
+        function hello()
+        {
+            alert('Hello from JavaScript!');
+        }
+
+        function changecolour()
+        {
+           /* var bc = $("#bcolour").val();
+            var tc = $("#tcolour").val();
+            var ms = $("#mess").val();
+*/
+
+            $('#div1').css({ backgroundColor: "green"});
+
+            $('#div1').css( {color: "yellow" } );
+
+            $('#div1').html('ms');
+
+
+            $('#div1').animate({width:"800px",height:"600px"}, 3000).
+            animate({width:"400px",height:"300px"},3000);
+
+
+        }
+
+        function startup()
+        {
+            $('#btn1').click(changecolour);
+        }
+
+    $(startup);
+
+    </script>
+
+
+
+
+    <style type='text/css'>
+        #div1
+        {
+            top: 300px;
+            left: 0px;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            background-color: #ffffc0;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Hello</h1>
+<p>Write a jQuery application to animate a div. Move it from x=0,y=0 to x=1024,y=768,and back again.<br/>  Note that you will need to give your div a set of initial properties in the CSS, as otherwise, jQuery will be unable to read its properties.</p>
+
+Background colour:<br /><input id="bcolour" type='text' value="blue" /> <br />
+Text colour:<br /><input id="tcolour" type="text" value="red"/> <br />
+Message:<br /><input id="mess" type='text' value="Hello"/> <br />
+<input type="button" value="Go!" id="btn1" /><br />
+<div id="div1"> This is the test div </div>
+</body>
+</html>
+
+

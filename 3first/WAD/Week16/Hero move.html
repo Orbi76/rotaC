@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hero move</title>
+    <style>
+        canvas{
+            background-color: darkcyan ;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+
+
+
+        x = 300;
+        y = 100;
+        function draw() {
+
+            canvas = document.getElementById("myCanvas");
+            canvas.addEventListener ("keydown", doKeyDown, true);
+            canvas.focus();
+            ctx = canvas.getContext('2d');
+
+            image = new Image();
+            image.src = "hero.jpg";
+
+            ctx.drawImage(image,x,y);
+            ctx.stroke();
+
+
+
+
+
+
+// Function to make it easy to write the status to a given element on the page
+            function outputText(elementID, text)
+            {
+                document.getElementById(elementID).innerHTML = text;
+            }
+
+
+            function clearCanvas() {
+                canvas.width = canvas.width;
+            }
+
+
+            function doKeyDown(e) {
+
+                //====================
+                //	THE W KEY
+                //====================
+                if (e.keyCode == 38) {
+                    clearCanvas();
+
+                    y = y - 10;
+
+                    image = new Image();
+                    image.src = "hero.jpg";
+                    ctx.drawImage(image,x,y);
+                    ctx.stroke();
+
+
+                    //    ctx.fillRect(x, y, 50, 30);
+                }
+
+                //====================
+                //	THE S KEY
+                //====================
+                if (e.keyCode == 40) {
+                    clearCanvas();
+                    y = y + 10;
+                    image = new Image();
+                    image.src = "hero.jpg";
+                    ctx.drawImage(image,x,y);
+                    ctx.stroke();
+
+
+                }
+
+                //====================
+                //	THE A KEY
+                //====================
+                if (e.keyCode == 37) {
+                    clearCanvas();
+                    x = x - 10;
+                    image = new Image();
+                    image.src = "hero.jpg";
+                    ctx.drawImage(image,x,y);
+                    ctx.stroke();
+
+                }
+
+                //====================
+                //	THE D KEY
+                //====================
+                if (e.keyCode == 39) {
+                    clearCanvas();
+                    x = x + 10;
+                    image = new Image();
+                    image.src = "hero.jpg";
+                    ctx.drawImage(image,x,y);
+                    ctx.stroke();
+
+                }
+
+            }
+
+        }
+
+
+    </script>
+</head>
+<body onload="draw()">
+<canvas id="myCanvas" height="500" width="700" tabindex="0" ></canvas>
+<p>Hello</p>
+<div id='status'>status</div>
+<div id='keypressid'>keypress</div>
+</body>
+</html>
+
+

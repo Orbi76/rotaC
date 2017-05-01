@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>Leaflet Example</title>
+    <script type='text/javascript'
+            src='http://edward2/ewt/leaflet/leaflet.js'></script>
+    <link rel='stylesheet' type='text/css'
+          href='http://edward2/ewt/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+        function init()
+        {
+            var map = new L.Map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            var layerOSM = new L.TileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } );
+
+            map.addLayer(layerOSM);
+
+            var pos = new L.LatLng(50.908,-1.4);
+            map.setView(pos, 14);
+
+            var marker = new L.Marker(pos);
+            map.addLayer(marker);
+        }
+    </script>
+</head>
+<body onload="init()">
+<h1>Overlay add marker</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html> <body>
+<h1>Database results!</h1>
+<?php
+
+$a = $_GET["artist"];
+$conn = new PDO("mysql:host=localhost;dbname=dftitutorials;",
+                "dftitutorials","dftitutorials");
+
+$results = $conn->query("select * from wadsongs where artist='$a'");
+while($row=$results->fetch())
+{
+echo "<p>";
+    echo " Student ID $row[ID]  <br/> ";
+    echo " Name $row[name] <br/> " ;
+    echo " Phone $row[phone] <br/>" ;
+    echo " Course $row[course] <br/>" ;
+    echo "</p>";
+}
+
+
+?>
+</body> </html>

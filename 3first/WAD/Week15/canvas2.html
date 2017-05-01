@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas2</title>
+    <style>
+        canvas{
+            background-color: darkcyan ;
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+        p {
+            color: black;
+        }
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function setup()
+        {
+            // Obtain an element
+            var ourElement = document.getElementById("myCanvas");
+
+            // Handle mouse down, mouse move and mouse up events
+
+            // The mouseDownHandler function will handle mouse presses
+            ourElement.addEventListener ("mousedown", mouseDownHandler);
+
+            // The mouseMoveHandler function will handle mouse movement
+            ourElement.addEventListener ("mousemove", mouseMoveHandler);
+
+            // The mouseUpHandler function will handle mouse release
+            ourElement.addEventListener ("mouseup", mouseUpHandler);
+
+            canvas = ourElement;
+        }
+
+        function mouseDownHandler(e)
+        {
+            var localX = e.pageX - canvas.offsetLeft;
+            var localY  = e.pageY - canvas.offsetTop;
+            outputText('status','mouse pressed at: x=' + localX + ' y=' + localY);
+        }
+
+        function mouseMoveHandler(e)
+        {
+            var localX = e.pageX - canvas.offsetLeft;
+            var localY  = e.pageY - canvas.offsetTop;
+            outputText('status','mouse moving at: x=' + localX + ' y=' + localY);
+        }
+
+        function mouseUpHandler(e)
+        {
+            var localX = e.pageX - canvas.offsetLeft;
+            var localY  = e.pageY - canvas.offsetTop;
+            outputText('status','mouse released at: x=' + localX + ' y=' + localY);
+        }
+
+        // Function to make it easy to write the status to a given element on the page
+        function outputText(elementID, text)
+        {
+            document.getElementById(elementID).innerHTML = text;
+        }
+
+
+    </script>
+</head>
+<body onload="setup()">
+<canvas id="myCanvas" height="400" width="400" >
+</canvas>
+
+<p id="status"></p>
+
+</body>
+</html>

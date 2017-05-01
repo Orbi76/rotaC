@@ -1,0 +1,47 @@
+
+<html>
+<head>
+<title> JavaScript example</title>
+
+<script type='text/javascript'>
+
+function jsDemo()
+{
+    // Read what the user entered in the two form fields
+    var n = document.getElementById("name").value;
+    var a = document.getElementById("age").value;
+
+    if (a == '' || n == '')
+    {
+        alert('One or more of the text fields was left blank.');
+    }
+    else if (a < 130 && a >= 0)
+    {
+
+        alert("Hello " + n + " your age is: " + a);
+    }
+    else
+    {
+        alert("Please enter a sensible age.");
+    }
+
+    // Do a for loop
+    // "i++" means increase i by 1
+    alert("Counting to 3");
+    for(var i=1; i<=3; i++)
+    {
+        alert(i);
+    }
+}
+
+</script>
+</head>
+<body>
+<h1>Basic JavaScript example</h1>
+Enter your name:<input id="name" /> <br />
+Enter your age:<input id="age" /> <br />
+<!-- When we click the button, the jsDemo() function will run. -->
+<input type='button' value='Go!' onclick='jsDemo()'/>
+
+</body>
+</html>

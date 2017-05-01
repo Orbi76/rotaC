@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car2</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    function Car(m,e,t)
+    {
+
+        this.make = m;
+        this.engine_capacity = e;
+        this.top_speed = t;
+
+        this.toString = function()
+        {
+            return this.make + "  The engin size is: " + this.engine_capacity + " , top Speed is: " + this.top_speed + " Now it goes with " + this.currentSpeed + " km/h"
+        };
+
+        this.accelerate = function()
+        {
+            this.currentSpeed++;
+        };
+
+        this.decelerate = function()
+        {
+            this.currentSpeed--;
+        };
+
+        this.engine_capacity = function() {this.engineRunning = 0);}
+
+    }
+
+    Car.prototype.currentSpeed = 0;
+    Car.prototype.engineRunning = "False";
+
+
+</script>
+
+
+
+
+</body>
+</html>

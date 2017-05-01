@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScriptObject</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        var cat = {
+            name: "Tiddles",
+            age: 10,
+            weight: 10,
+
+            makeNoise: function()
+            {
+                alert("Meow!");
+            },
+
+            walk: function()
+            {
+                // "--" reduces the weight by 1
+                this.weight--;
+            },
+
+            eat: function()
+            {
+                // "++" increases the weight by 1
+                this.weight++;
+            }
+
+        };
+
+        var cat2 = {
+            name: "Tom",
+            age: 5,
+            weight: 5,
+
+            makeNoise: function()
+            {
+                alert("Meow!");
+            },
+
+            walk: function()
+            {
+                // "--" reduces the weight by 1
+                this.weight--;
+            },
+
+            eat: function()
+            {
+                // "++" increases the weight by 1
+                this.weight++;
+            }
+
+        };
+
+
+    </script>
+
+</body>
+</html>

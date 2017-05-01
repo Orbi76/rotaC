@@ -1,0 +1,88 @@
+
+<html><head>
+    <title>AJAX Exercise</title>
+
+    <style type='text/css'>
+        body { font-family: Calibri, DejaVu Sans, sans-serif; }
+        #response { background-color: #ffffc0; width:600px; }
+
+        table,th,td {
+             border : 1px solid black;
+             border-collapse: collapse;
+         }
+        th,td {
+            padding: 5px;
+        }
+    </style>
+
+
+    <script type='text/javascript'>
+
+
+        function ajaxrequest()
+        {
+            var xhr2 = new XMLHttpRequest();
+
+            xhr2.addEventListener ("load", receiveData);
+
+            var a = document.getElementById("artist").value;
+
+
+            // xhr2.open("GET", "http://edward2/wad/xmlflights.php?destination=" + a + "&date=" + b);
+            xhr2.open("GET", "http://edward2.solent.ac.uk/~gorban/Emakexml.php?artist=" + a);
+            //xhr2.open("GET", "http://edward2/Emakexml.php?artist=" + a);
+            xhr2.send();
+        }
+
+        // The callback function
+        function receiveData(e)
+        {
+            //var html = " ";
+            // alert(e.target.response);
+            var table="<tr><th>Title</th><th>Artist</th><th>Year</th></tr>";
+
+            var songsArray = e.target.responseXML.getElementsByTagName("song");
+            //alert("Array length: " + songsArray.length);
+            for(var count=0; count<songsArray.length; count++)
+            {
+                //  var song = songsArray[count].getElementsByTagName("song")[0].firstChild.nodeValue;
+                table += "<tr><td>" +
+                songsArray[count].getElementsByTagName("title")[0].firstChild.nodeValue +
+                "</td><td>" +
+                songsArray[count].getElementsByTagName("artist")[0].
+                        firstChild.nodeValue +
+                "</td><td>" +
+                songsArray[count].getElementsByTagName("year")[0].
+                        firstChild.nodeValue +
+                "</td></tr>";
+  //              html = html + " Title: " + title + " Artist: " + art + " Year: " + year + "<br />";
+
+            }
+
+            document.getElementById("divtable").innerHTML = table;
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+
+<h1>Hittastic !</h1>
+<p>Exercise 1 Write an AJAX front end which allows the user to search for all songs by a particular artist. It should connect to your web service from last week, and parse the XML returned using the DOM. Place each matching song on a separate line within a div. :
+
+
+
+</p>
+<p>
+    Artist:<br/>
+    <input id="artist" value="Oasis" /> <br/>
+
+
+    <input type="button" value="Go!" onclick="ajaxrequest()" />
+</p>
+
+<div id="response"><table id="divtable"></table></div>
+
+</body></html>

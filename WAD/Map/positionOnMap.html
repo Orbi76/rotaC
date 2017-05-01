@@ -1,0 +1,50 @@
+
+<html>
+<head>
+    <title>Geolocation Test</title>
+    <script type='text/javascript'>
+
+        var map;
+
+
+        function init()
+        {
+            if(navigator.geolocation)
+            {
+                navigator.geolocation.watchPosition (processPosition, handleError,
+                        {enableHighAccuracy:true, maximumAge: 5000 }
+                );
+            }
+            else
+            {
+                alert("Sorry, geolocation not supported in this browser");
+            }
+
+            map = new L.Map ("map1");
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+
+            map.setView(new L.LatLng(51,-1), 14);
+
+
+
+        }
+
+        function processPosition(pos)
+        {
+            var info = 'Lat: ' + pos.coords.latitude + ' lon: ' + pos.coords.longitude;
+            document.getElementById('info').innerHTML = info;
+        }
+
+        function handleError(err)
+        {
+            alert('An error occurred: ' + err.code);
+        }
+
+    </script>
+</head>
+<body onload='init()'>
+<h1>Geolocation Test - Watching Position</h1>
+<div id='info'></div>
+</body>
+</html>

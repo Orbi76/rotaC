@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Leaflet Example</title>
+
+    <script type='text/javascript'
+            src='http://localhost:63342/WAD/leaflet/leaflet.js'></script>
+    </script>
+    <link rel='stylesheet' type='text/css' href='http://localhost:63342/WAD/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+
+      var map;
+
+        function init()
+        {
+            var map = new L.Map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            var layerOSM = new L.TileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } );
+
+            map.addLayer(layerOSM);
+
+
+            var pos = new L.LatLng(47.5070, 19.0455);
+            map.setView(pos, 13);
+
+
+            //  map.setView(new L.LatLng(47.5070, 19.0455), 13);
+
+            var marker = new L.Marker(pos);
+            map.addLayer(marker);
+
+            map.on("click",onMapClick)
+
+        }
+        function onMapClick(e)
+        {
+            // "e.latlng" is an L.LatLng object representing the mouse click position
+            alert("You clicked at: " + e.latlng.lat + " " + e.latlng.lng);
+
+
+        }
+
+    </script>
+</head>
+<body onload="init()">
+<h1>Budapest</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>

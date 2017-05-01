@@ -1,0 +1,48 @@
+
+<html><head>
+    <title>AJAX Example</title>
+
+
+    <script type='text/javascript'>
+
+        function ajaxrequest()
+        {
+            var xhr2 = new XMLHttpRequest();
+
+            xhr2.addEventListener ("load", receiveData);
+
+            var a = document.getElementById("destination").value;
+            var b = document.getElementById("date").value;
+
+            xhr2.open("GET" , "http://edward/wad/flights.php?destination=" + a + "&date=" + b);
+            xhr2.send();
+        }
+
+        // The callback function
+        function receiveData(e)
+        {
+            document.getElementById('response').innerHTML = e.target.responseText;
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+
+<h1>Solent Airways!</h1>
+
+<h2>Get the cheapest flights ever!!!!!!!!!!</h2>
+<p>Whether it's New York, LA, Montreal or Denver, you can be sure to find
+    the best deals on the web right here!!!!!!!!!!!!!!!!!!!!</p>
+<p>
+    Destination: <input id="destination" /> <br/>
+    Date: <input id="date" /> <br/>
+
+    <input type="button" value="Go!" onclick="ajaxrequest()" />
+</p>
+
+<div id="response"></div>
+
+</body></html>

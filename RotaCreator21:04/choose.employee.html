@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Choose Employee</title>
+<!--    <link rel="stylesheet" type="text/css" href="Hittastic.css"/>   -->
+
+
+    <style>
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        th {text-align: left;}
+    </style>
+
+    <script type='text/javascript'>
+
+        //        function startup()
+        //        {
+        //            $('#btn1').click (ajaxrequest);
+        //        }
+
+
+        function ajaxrequest() {
+
+            var xhr2 = new XMLHttpRequest();
+
+            var a = document.getElementById("PositionID").value;
+            xhr2.addEventListener("load", receiveData);
+
+            //  xhr2.open("GET", "http://edward2/wad/json.php?artist=" + a);
+            xhr2.open("GET", "http://localhost:8888/RotaCreator/jsonEmployee.php?PositionID=" + a);
+            xhr2.send();
+        }
+
+
+        // The callback function
+        //        function receiveData(e)
+        //        {
+        //            document.getElementById('response').innerHTML = e.target.responseText;
+        //        }
+        //The callback function
+        function receiveData(e)
+        {
+            var html="";
+            var data = JSON.parse(e.target.responseText);
+            for (var i=0; i<data.length; i++)
+            {
+                //  html = html + (data[i].songid+ ' ' + data[i].artist+ ' ' + data[i].title + '</br>');
+                html = html + ("<tr><td>" + data[i].employee_number + "</td><td>" + " " + data[i].first_name + "</td><td>" + " " + data[i].last_name +"</td></tr>" + "</br>");
+
+            }
+            document.getElementById('responsediv').innerHTML = html;
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+
+</head>
+
+
+
+<body>
+<div id="header">
+    <h1>Employee Selection page!</h1>
+</div>
+
+
+<div id="main">
+
+    <h1> Hello</h1>
+    <p>This is a Rota wedsite where you can choos Employees.</p>
+    <form method="post">
+
+        <label >Position ID: </label>
+        <input type="text" name="PositionID" id="PositionID"/>
+        <br/>
+
+        <input type="button" value="Go!" id="btn1" onclick="ajaxrequest()" />
+
+    </form>
+
+    <div id="responsediv">
+        <p>Response:<br/></p>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

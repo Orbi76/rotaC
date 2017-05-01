@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type='text/css'>
+        #canvas1 { background-color: #ffffc0; }
+    </style>
+    <script type='text/javascript'>
+
+        function init()
+        {
+            var canvas = document.getElementById('canvas1');
+            canvas.addEventListener ("keyup", handleKeyEvent);
+            canvas.focus();
+         //   canvas.tabIndex(-1);
+        }
+
+        function handleKeyEvent(e)
+        {
+            status("statusdiv","keyCode=" + e.keyCode + " shift? " + e.shiftKey );
+        }
+
+        function status(id,txt)
+        {
+            document.getElementById(id).innerHTML = txt;
+           // alert(txt);
+        }
+
+
+    </script>
+</head>
+<body onload='init()'>
+<p>
+    <canvas id='canvas1' width='400' height='400' tabindex='0'>
+    </canvas>
+</p>
+<div id='statusdiv'>status div. here is the code.</div>
+</body>
+</html>

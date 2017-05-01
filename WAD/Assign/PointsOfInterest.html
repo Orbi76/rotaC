@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>PointsOfInterest</title>
+    <style type='text/css'>
+        body { font-family: Calibri, DejaVu Sans, sans-serif; }
+        #results { background-color: #ffffc0; width:auto; }
+
+
+         table, th, td, tr {
+             border: 1px solid black;
+         }
+
+    </style>
+    <script type='text/javascript' src='http://edward2/wad/leaflet/leaflet.js'></script>
+    <link rel='stylesheet' type='text/css' href='http://edward2/wad/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+        var map;
+
+        function init()
+        {
+
+            if(navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition (processPosition, handleError);
+            }
+            else
+            {
+                alert("Sorry, geolocation not supported in this browser");
+            }
+
+            map = L.map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            L.tileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } ).addTo(map);
+
+            map.setView(new L.LatLng(47.5070,19.0470), 14);
+
+
+
+        }
+        function processPosition(pos)
+        {
+          //  var info = 'Lat: ' + pos.coords.latitude + ' lon: ' + pos.coords.longitude;
+          //  document.getElementById('info').innerHTML = info;
+            map.setView(new L.LatLng(pos.coords.latitude ,pos.coords.longitude), 14);
+
+        }
+
+        function handleError(err)
+        {
+            alert('An error occurred: ' + err.code);
+        }
+
+        function chooseMap()
+        {
+
+
+            map.setView(new L.LatLng(40.75,-74), 13);
+        }
+
+        function ajaxChooseRegion()
+        {
+
+            var xhr2 = new XMLHttpRequest();
+
+            // Read the data from the form fields.
+            var region = document.getElementById("region").value;
+
+
+            // Specify the CALLBACK function.
+            // When we get a response from the server, the callback function will run
+            xhr2.addEventListener ("load", chooseRegionResult);
+
+
+            //xhr2.open('GET','http://Macintosh HD/Applications/MAMP/htdocs/Assignment/asearchh.php?type=' + type);
+            xhr2.open('GET','webservicesearch.php?region=' + region);
+            // Send the request.
+            xhr2.send();
+        }
+
+
+        function chooseRegionResult(e)
+        {
+            //document.getElementById('results').innerHTML = e.target.responseText;
+
+            var errmess = "This region does not exist!";
+            var html = "<table style='width:60%'><tr><th>Name</th><th>Type</th><th>Country</th><th>Region</th><th>Lon</th><th>Lat</th></tr>";
+            var data = JSON.parse(e.target.responseText);
+
+            //alert(data.length);
+            if (data.length == 0)
+            {
+
+                document.getElementById('results').innerHTML =  errmess;
+            }
+            else
+            {
+
+                for (var i = 0; i < data.length; i++) {
+                    html = html +
+                            ("<tr><td>" + data[i].name + "</td><td> " + " " + data[i].type + " </td><td>" + " " + data[i].country + "</td><td> " + " " + data[i].region + "</td><td> " + " " + data[i].lon + "</td><td> " + " " + data[i].lat + "</td></tr>");
+
+
+                    L.marker([data[i].lat, data[i].lon]).addTo(map);
+                    map.setView(new L.LatLng(data[i].lat, data[i].lon), 13);
+                }
+                html = html + ("</table>");
+                document.getElementById('results').innerHTML = html;
+
+                //         echo" the given type doesnt exist:;
+            }
+        }
+
+
+        function ajaxrequest()
+        {
+            // Create the XMLHttpRequest variable.
+            // This variable represents the AJAX communication between client and
+            // server.
+            var xhr2 = new XMLHttpRequest();
+
+            // Read the data from the form fields.
+            var type = document.getElementById("type").value;
+
+
+            // Specify the CALLBACK function.
+            // When we get a response from the server, the callback function will run
+            xhr2.addEventListener ("load", resultsReturned);
+
+            // Open the connection to the server
+            // We are sending a request to "flights.php" and passing in the
+            // destination and date as a query string. 'http://edward/ewt/hits.php?artist='
+            //xhr2.open('GET','http://Macintosh HD/Applications/MAMP/htdocs/Assignment/asearchh.php?type=' + type);
+            xhr2.open('GET','webservicesearch.php?type=' + type);
+            // Send the request.
+            xhr2.send();
+        }
+
+        // The callback function
+        // It simply places the response from the server in the div with the ID
+        // of 'response'.
+
+        // The parameter "e" contains the original XMLHttpRequest variable as
+        // "e.target".
+        // We get the actual response from the server as "e.target.responseText"
+        function resultsReturned(e)
+        {
+         //   document.getElementById('results').innerHTML = e.target.responseText;
+
+            var html = "<table style='width:60%'><tr><th>Name</th><th>Type</th><th>Country</th><th>Region</th><th>Lon</th><th>Lat</th></tr>";
+            var data = JSON.parse(e.target.responseText);
+            for(var i=0; i<data.length; i++)
+            {
+                html = html +
+                        ("<tr><td>"+ data[i].name + "</td><td> " + " " + data[i].type + " </td><td>" + " " + data[i].country + "</td><td> " + " " + data[i].region + "</td><td> " + " " + data[i].lon + "</td><td> " + " " + data[i].lat +"</td></tr>");
+
+
+
+                L.marker( [ data[i].lat, data[i].lon] ).addTo(map);
+            }
+            html = html + ("</table>");
+            document.getElementById('results').innerHTML = html;
+
+
+        }
+
+    </script>
+
+
+</head>
+
+<body onload="init()">
+
+
+
+    <p>Pleas give the type of the poi what you looking for.<br />
+    Poi Type:<input id="type"  name="type" onkeyup='ajaxrequest()'/><br />
+    <input type="button" value="Search" onclick="ajaxrequest()"/><br />
+        Choose region:
+    <input id="region" name="region" onkeyup='ajaxChooseRegion()' /><br />
+    <input type="button" value="Go" onclick="ajaxChooseRegion()" /></p>
+
+    <div id="map1" style="width:800px; height:600px"> </div>
+
+    <div id="results"></div>
+
+</body>
+</html>

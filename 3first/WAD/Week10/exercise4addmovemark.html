@@ -1,0 +1,100 @@
+<html>
+<head>
+    <title>Leaflet Example</title>
+
+    <script type='text/javascript'
+            src='http://localhost:63342/WAD/leaflet/leaflet.js'>
+    </script>
+    <link rel='stylesheet' type='text/css' href='http://localhost:63342/WAD/leaflet/leaflet.css' />
+    <script type='text/javascript'>
+
+
+        function init()
+        {
+            map = new L.Map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            var layerOSM = new L.TileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } );
+
+            map.addLayer(layerOSM);
+
+
+            var pos = new L.LatLng(47.5070, 19.0455);
+            map.setView(pos, 13);
+
+            var marker = new L.Marker(pos,{draggable: true});
+            map.addLayer(marker);
+
+
+            var pos2 = new L.LatLng(47.5070, 19.0558);
+            var marker2 = new L.Marker(pos2);
+            map.addLayer(marker2);
+
+            // map.on("click",onMapClick)
+
+            map.on("click",onMapClick);
+          //  map.off("click",onMapClick);
+
+            //   var npos = new L.LatLng(e.latlng.lat, e.latlng.lng);
+
+            //  var nmarker = new L.Marker(npos);
+            //  map.addLayer(addMarker(e));
+
+        }
+        function onMapClick(e)
+        {
+            // "e.latlng" is an L.LatLng object representing the mouse click position
+            //   alert("You clicked at: " + e.latlng.lat + " " + e.latlng.lng);
+            // var clickedPoint = {"coordinates":[e.latlng.lat, e.latlng.lng]
+            //    var cpos = new L.LatLng(e.latlng.lat, e.latlng.lng).addTo(map);
+            //   map.addLayer(nemarker);
+
+          var detail= prompt('What is here?');
+            var marker = new L.Marker(e.latlng,{draggable: true, riseOnHover: true}).update();
+       //    marker.bindPopup("<p>" +detail+"</p>").openPopup();
+            marker.bindPopup(detail+"<br/>"+"The coordinates are: " +"<br/>"+ e.latlng.lat + " <br/>" + e.latlng.lng+ "<br/>"+ "<input type='button' value='Delete'class='marker-delelte-button'/>"+"<br/>" + "<a href='http://www.mediaklikk.hu'>link</a>");
+
+            marker.on("pupopopen",deletebut);
+      //      return marker;
+            map.addLayer(marker);
+
+
+        }
+        function removeMarker()
+        {
+            map.removeLayer(marker);
+        }
+
+        function addMarker(e)
+        {
+            var npos = new L.LatLng(e.latlng.lat, e.latlng.lng);
+            //  map.setView(npos,13);
+
+            var nmarker = new L.Marker(npos);
+            //map.addLayer(nmarker);
+
+
+
+        }
+
+        function deletebut()
+        {
+            var tempMarker = this;
+            $(".marker-delete-button:visible").click(function()
+            {
+                map.removeLayer(tempMarker);
+            });
+        }
+
+
+
+    </script>
+</head>
+<body onload="init()">
+<h1>Budapest</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel='stylesheet' type='text/css'
+          href='http://www.free-map.org.uk/course/css/dfti0910.css' />
+</head>
+<body>
+
+<?php
+
+header('Content-type: text/xml');
+$a = $_GET["artist"];
+$conn = new PDO("mysql:host=localhost;dbname=dftitutorials;", "dftitutorials", "dftitutorials");
+$results = $conn->query("SELECT * FROM wadsongs WHERE artist=Woop");
+while($row = $results->fetch()) {
+        echo "<song>";
+        echo "<title>" . $row['song'] . "</title>";
+        echo "<artist>" . $row['artist'] . "</artist>";
+        echo "<year>" . $row['year'] . "</year>";
+        echo "</song>";
+    }
+
+?>
+
+
+</body>
+</html>

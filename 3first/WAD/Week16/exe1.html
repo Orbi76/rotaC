@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type='text/javascript'>
+
+        function ajaxrequest()
+        {
+
+            var xhr2 = new XMLHttpRequest();
+            xhr2.addEventListener("load", onComplete);
+            xhr2.addEventListener("progress", onProgress);
+
+            var artist = document.getElementById("artist").value;
+            xhr2.open("GET", "hits.php?artist=" + artist);
+
+            xhr2.send();
+        }
+
+        function onComplete(e)
+        {
+            document.getElementById("results").innerHTML = e.target.responseText;
+        }
+
+        function onProgress(e)
+        {
+            var percentage = (e.loaded / e.total) * 100;
+            document.getElementById("progressbar").value = percentage;
+        }
+
+    </script>
+</head>
+<body>
+<h1>XHR2 Test</h1>
+
+Artist: <input id="artist" />
+
+<input type="button" value="Search!" onclick="ajaxrequest()" />
+
+<progress id="progressbar" min="0" max="100"></progress>
+
+<div id="results"></div>
+
+</body>
+</html>  

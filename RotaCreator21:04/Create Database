@@ -1,0 +1,55 @@
+
+DROP TABLE Employee;
+CREATE TABLE Employee(
+  employee_number int NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR (255),
+  last_name VARCHAR (255),
+  gender VARCHAR (10),
+  dob date,
+  position VARCHAR (255),
+  hours int,
+  shift VARCHAR (255),
+  holiday_hours int,
+  shiftID int,
+  adID int,
+  positionID INT,
+  available_day VARCHAR (255),
+  PRIMARY KEY (Employee_number),
+  FOREIGN KEY (ShiftID) REFERENCES Shifts (shiftID),
+  FOREIGN KEY (adID) REFERENCES Available_Days (adID),
+  FOREIGN KEY (positionID) REFERENCES Positions (positionID)
+);
+
+DROP TABLE Shifts;
+CREATE TABLE Shifts(
+  shift_ID int NOT NULL AUTO_INCREMENT,
+  shift VARCHAR (255),
+  PRIMARY KEY (shift_ID)
+);
+
+DROP TABLE Available_Days;
+CREATE TABLE Available_Days(
+  Ad_ID int NOT NULL AUTO_INCREMENT,
+  Available_Day VARCHAR (255),
+  PRIMARY KEY (Ad_ID)
+
+);
+DROP TABLE Positions;
+CREATE TABLE Positions(
+  Position_ID INT NOT NULL AUTO_INCREMENT,
+  Position VARCHAR (255),
+  PRIMARY KEY (Position_ID)
+
+);
+
+
+INSERT INTO Actors
+VALUES (Brad,Pit,Male,13/12/2000);
+
+INSERT INTO `Actors` (`actID`, `first_name`, `last_name`, `gender`, `dob`)
+VALUES ('1', 'Brad', 'Pit', 'Male', '2016-05-17');
+
+INSERT INTO Genres (TYPE)
+VALUES ('Action');
+
+

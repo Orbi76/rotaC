@@ -1,0 +1,28 @@
+
+<?php
+header("Content-type: text/xml");
+$a = $_GET["Artist name"];
+
+// connect to the database
+$conn = new PDO("mysql:host=localhost;dbname=dftitutorials;", "root", "root");
+// get details of the venue using the id
+$results = $conn->query("SELECT * FROM hits WHERE artist='$a'");
+while($row = $results->fetch())
+{
+
+echo"<songs>";
+
+echo"<song>";
+echo"<title>$row[song] </title>";
+echo"<artist>$row[artist] </artist>";
+echo"<year> $row[year]</year>";
+echo"<song>";
+
+echo"</songs>";
+
+)
+
+?>
+
+
+

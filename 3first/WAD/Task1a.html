@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' type='text/css'
+          href='http://www.free-map.org.uk/course/css/dfti0910.css' />
+</head>
+<body>
+<?php
+
+
+conn = new PDO("mysql:host=localhost;dbname=gorban;", "root", "root");
+
+
+$results = $conn->query("select * from hits ");
+while($row=$results->fetch())
+{
+echo "<p>";
+    echo " Title $row[song]  <br/> ";
+    echo " Year $row[year] <br/> " ;
+
+    echo "</p>";
+}
+?>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Geolocation Test</title>
+ <!--
+    <script type='text/javascript'
+            src='http://localhost:63342/WAD/leaflet/leaflet.js'>
+    </script>
+  -->
+    <!--  <link rel='stylesheet' type='text/css' href='http://localhost:63342/WAD/leaflet/leaflet.css' />
+  -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script type='text/javascript'>
+
+
+        function init()
+        {
+            if(navigator.geolocation)
+            {
+                navigator.geolocation.watchPosition (processPosition, handleError,
+                        {enableHighAccuracy:true, maximumAge: 5000 }
+                );
+            }
+            else
+            {
+                alert("Sorry, geolocation not supported in this browser");
+            }
+
+
+            map = new L.Map ("map1");
+
+            var attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
+
+            var layerOSM = new L.TileLayer
+            ("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    { attribution: attrib } );
+            var poss = new L.LatLng(51, -1);
+            map.addLayer(layerOSM);
+            map.setView(poss, 16);
+            //map.setView(pos,14);
+
+        }
+
+        function processPosition(pos)
+        {
+            var info = 'Lat: ' + pos.coords.latitude + ' lon: ' + pos.coords.longitude;
+            document.getElementById('info').innerHTML = info;
+
+            var marker = new L.marker(new L.LatLng(pos.coords.latitude,pos.coords.longitude));
+            marker.bindPopup("You are here");
+            map.addLayer(marker);
+
+            var newLoc = new L.LatLng(pos.coords.latitude, pos.coords.longitude);
+            map.setView( newLoc );
+
+        }
+
+        function handleError(err)
+        {
+            alert('An error occurred: ' + err.code);
+        }
+
+    </script>
+</head>
+<body onload='init()'>
+<h1>Geolocation Test</h1>
+<div id='info'  style="background-color: #ffffc0; width:400px; height:50px;" ></div>
+<h1>Somewhere</h1>
+<div id="map1" style="width:800px; height:600px"> </div>
+</body>
+</html>
+

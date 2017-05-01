@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hero</title>
+    <style>
+        canvas{
+            background-color: darkcyan ;
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+        p {
+            color: black;
+        }
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function setup()
+        {
+            // Obtain an element
+            var ourElement = document.getElementById("myCanvas");
+
+            // Handle mouse down, mouse move and mouse up events
+
+            // The mouseDownHandler function will handle mouse presses
+            ourElement.addEventListener ("mousedown", mouseDownHandler);
+
+            // The mouseMoveHandler function will handle mouse movement
+            ourElement.addEventListener ("mousemove", mouseMoveHandler);
+
+            // The mouseUpHandler function will handle mouse release
+            ourElement.addEventListener ("mouseup", mouseUpHandler);
+
+
+            //
+            ourElement.addEventListener ("keyup", handleKeyEvent);
+
+            canvas = ourElement;
+        }
+
+        function mouseDownHandler(e)
+        {
+            var localX = e.pageX - canvas.offsetLeft;
+            var localY  = e.pageY - canvas.offsetTop;
+            outputText('status','mouse pressed at: x=' + localX + ' y=' + localY);
+        }
+
+        function mouseMoveHandler(e)
+        {
+            var localX = e.pageX - canvas.offsetLeft;
+            var localY  = e.pageY - canvas.offsetTop;
+            outputText('status','mouse moving at: x=' + localX + ' y=' + localY);
+        }
+
+        function mouseUpHandler(e)
+        {
+            var localX = e.pageX - canvas.offsetLeft;
+            var localY  = e.pageY - canvas.offsetTop;
+            outputText('status','mouse released at: x=' + localX + ' y=' + localY);
+        }
+
+        // Function to make it easy to write the status to a given element on the page
+        function outputText(elementID, text)
+        {
+            document.getElementById(elementID).innerHTML = text;
+        }
+
+
+        function handleKeyEvent(e)
+        {
+            status("status","keyCode=" + e.keyCode + " shift? " + e.shiftKey );
+        }
+
+        function status(id,txt)
+        {
+            document.getElementById(id).innerHTML = txt;
+            // alert(txt);
+        }
+    ///////
+        function handleKeyEvent(e)
+        {
+            status("status","keyCode=" + e.keyCode + " shift? " + e.shiftKey );
+        }
+
+        function status(id,txt)
+        {
+            document.getElementById(id).innerHTML = txt;
+            // alert(txt);
+        }
+
+
+
+    ////////
+
+
+
+        function draw(){
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = "red";
+         //   ctx.fillRect(150,150,100,100);
+            ctx.arc(100,75,50,0,2*Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+        }
+
+    </script>
+</head>
+<body onload="draw()">
+<canvas id="myCanvas" height="400" width="400" >
+</canvas>
+
+<p id="statusp">up, down</p>
+<div id='status'>status</div>
+
+</body>
+</html>

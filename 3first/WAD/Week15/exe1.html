@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas exe 1</title>
+    <style>
+        canvas{
+            background-color: darkcyan ;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+
+        function draw(){
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext('2d');
+          //  var jqcanvas = $(myCanvas);
+            ctx.fillStyle = "green";
+            ctx.fillRect(100,100,500,300);
+            ctx.strokeStyle = "#a06060";
+            ctx.lineWidth = 10;
+            ctx.beginPath();
+            ctx.moveTo(80,80);
+            ctx.lineTo(35,20);
+            ctx.lineTo(620,80);
+            ctx.lineTo(620,420);
+            ctx.lineTo(350,480);
+            ctx.lineTo(80,420);
+            ctx.closePath();
+            ctx.stroke();
+
+        }
+
+
+
+    </script>
+</head>
+<body onload="draw()">
+<canvas id="myCanvas" height="500" width="700" >
+</canvas>
+<p>Hello</p>
+</body>
+</html>
